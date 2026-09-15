@@ -1,6 +1,6 @@
 # AI录音卡开放协议
 
-[English](./README.md) | 中文
+[English](./README.en.md) | 中文
 
 面向 **AI录音卡、录音卡、蓝牙录音卡、智能录音卡、AI recording card、AI recorder card、Bluetooth recorder card、voice recorder card** 的开放协议、Web Bluetooth 测试平台和 SDK 示例。
 
@@ -36,6 +36,7 @@
 ```text
 .
 ├── README.md
+├── README.en.md
 ├── README.zh-CN.md
 ├── docs/
 │   ├── protocol.md
@@ -100,4 +101,3 @@ CRC 使用 CRC-16/XMODEM，计算范围是 `LEN_LO LEN_HI TYPE CMD PARAMS...`。
 ## 授权
 
 MIT License，见 [LICENSE](./LICENSE)。
-

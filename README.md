@@ -1,26 +1,49 @@
-# AI Recorder Card Open Protocol
+# AI录音卡开放协议
 
-English | [中文](./README.zh-CN.md)
+中文 | [English](./README.en.md)
 
-Open BLE protocol, Web Bluetooth tester, and SDK examples for the QS668 AI recorder card.
+面向 **AI录音卡、录音卡、蓝牙录音卡、智能录音卡、AI recording card、AI recorder card、Bluetooth recorder card、voice recorder card** 的开放协议、Web Bluetooth 测试平台和 SDK 示例。
 
-This repository is for developers building products around an AI recorder card, recording card, Bluetooth recorder card, voice recorder card, smart audio recorder, or BLE audio recording hardware. Unlike projects that only publish an application SDK, this project documents the lower-level Bluetooth protocol so developers can integrate the hardware directly from a browser, mobile app, desktop app, or embedded gateway.
+项目主页和在线测试平台：<https://nextproto.top/qs668/>
 
-Product and online tester: <https://nextproto.top/qs668/>
+## 项目定位
 
-## Why This Project
+这个项目主打 **开放底层蓝牙协议**，不只是开放 SDK。
 
-- Open protocol first: the BLE service, characteristics, frame format, command types, and CRC are documented.
-- SDK second: the SDK is a thin wrapper over the protocol, not a closed black box.
-- Web Bluetooth ready: the `website/` directory contains the open-source code of the QS668 online protocol tester.
-- Bilingual docs: Chinese and English keywords are included so developers can find this project by searching "录音卡", "AI录音卡", "AI recording card", "AI recorder card", "recording card", or "Bluetooth recorder card".
-- Hardware integration friendly: supports device status, battery, capacity, recording control, realtime OPUS stream, file list, file import, delete, and raw protocol frame testing.
+很多硬件项目只给应用层 SDK，开发者必须依赖厂商封装。本项目会把 QS668 AI录音卡的 BLE 服务、特征值、帧格式、命令类型、CRC、文件传输和实时音频流程整理成公开文档。SDK 只是协议之上的薄封装，开发者可以直接用协议接入浏览器、App、桌面软件、网关或行业系统。
 
-## Repository Layout
+## 为什么要开放底层协议
+
+- 开发者可以直接理解设备如何通信，而不是被 SDK 黑盒限制。
+- 软件公司可以把录音卡接入自己的 App、SaaS、桌面软件或行业系统。
+- 协议文档、SDK、网页测试工具可以互相校验，降低联调成本。
+- 硬件能力可以被更多开发者重新组合，做出会议记录、执法记录、工牌、采访、课堂、语音笔记、AI Agent 输入设备等新产品。
+
+## 适合谁
+
+- 想做 AI录音卡 App 的开发者
+- 想把录音卡接入自己系统的软件公司
+- 想研究 BLE 录音硬件协议的人
+- 需要实时音频、文件导入、语音转写、录音控制的行业项目
+- 搜索 “录音卡”、“AI录音卡”、“AI recording card”、“AI recorder card”、“recording card SDK” 的开发者
+
+## 已开放内容
+
+- QS668 Web Bluetooth 测试平台源码
+- BLE UUID、写入特征、通知特征说明
+- 底层协议帧格式
+- CRC-16/XMODEM 校验
+- 控制命令、实时音频命令、文件命令、录音命令
+- JavaScript 协议 SDK 雏形
+- 最小 Web Bluetooth 示例
+- 中英双语 README 和协议文档
+
+## 目录结构
 
 ```text
 .
 ├── README.md
+├── README.en.md
 ├── README.zh-CN.md
 ├── docs/
 │   ├── protocol.md
@@ -35,54 +58,54 @@ Product and online tester: <https://nextproto.top/qs668/>
     └── app.js
 ```
 
-## Quick Start
+## 本地运行网页测试平台
 
-Open the local tester with HTTPS or localhost. Web Bluetooth requires Chrome or Edge.
+Web Bluetooth 需要 Chrome 或 Edge，并且页面必须运行在 HTTPS 或 localhost。
 
 ```bash
 cd website
 python3 -m http.server 8080
 ```
 
-Then open:
+然后打开：
 
 ```text
 http://localhost:8080
 ```
 
-The public version remains available at:
+线上版本保留在：
 
 ```text
 https://nextproto.top/qs668/
 ```
 
-## Protocol Snapshot
+## 协议快速说明
 
-BLE UUIDs:
+BLE UUID：
 
-| Purpose | UUID |
+| 用途 | UUID |
 | --- | --- |
-| Service | `0000ae20-0000-1000-8000-00805f9b34fb` |
-| Write | `0000ae21-0000-1000-8000-00805f9b34fb` |
-| Notify | `0000ae22-0000-1000-8000-00805f9b34fb` |
-| Key notify | `0000ae23-0000-1000-8000-00805f9b34fb` |
+| 服务 | `0000ae20-0000-1000-8000-00805f9b34fb` |
+| 写入 | `0000ae21-0000-1000-8000-00805f9b34fb` |
+| 通知 | `0000ae22-0000-1000-8000-00805f9b34fb` |
+| 按键/机身事件通知 | `0000ae23-0000-1000-8000-00805f9b34fb` |
 
-Frame format:
+协议帧：
 
 ```text
 5A SEQ CRC_LO CRC_HI LEN_LO LEN_HI TYPE CMD PARAMS...
 ```
 
-CRC is CRC-16/XMODEM over `LEN_LO LEN_HI TYPE CMD PARAMS...`.
+CRC 使用 CRC-16/XMODEM，计算范围是 `LEN_LO LEN_HI TYPE CMD PARAMS...`。
 
-Read more:
+更多内容：
 
-- [Protocol documentation](./docs/protocol.md)
 - [中文协议文档](./docs/protocol.zh-CN.md)
+- [Protocol documentation](./docs/protocol.md)
 - [JavaScript SDK](./sdk/javascript/)
-- [Web Bluetooth example](./examples/web-bluetooth/)
+- [Web Bluetooth 示例](./examples/web-bluetooth/)
 
-## License
+## 授权
 
-MIT License. See [LICENSE](./LICENSE).
+MIT License，见 [LICENSE](./LICENSE)。
 
