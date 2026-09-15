@@ -1,0 +1,33 @@
+name: Protocol bug
+description: Report a BLE protocol, SDK, or Web Bluetooth issue
+title: "[Protocol] "
+labels: ["protocol", "bug"]
+body:
+  - type: input
+    id: device
+    attributes:
+      label: Device model / firmware
+      placeholder: QS668, firmware version
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Web Bluetooth
+        - Android
+        - iOS
+        - Desktop
+        - Embedded host
+        - Other
+  - type: textarea
+    id: frames
+    attributes:
+      label: Raw TX/RX frames
+      description: Paste raw hex logs when available.
+      render: text
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Expected behavior, actual behavior, and reproduction steps.
+

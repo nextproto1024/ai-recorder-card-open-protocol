@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>AI录音卡测试平台</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./styles.css?v=2026090802" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">QS668 BLE Protocol Tester</p>
+        <h1 data-i18n="appTitle">AI录音卡测试平台</h1>
+      </div>
+      <div class="connection">
+        <div class="segmented" aria-label="Language">
+          <button id="langZhBtn" type="button" data-lang="zh">中文</button>
+          <button id="langEnBtn" type="button" data-lang="en">EN</button>
+        </div>
+        <div class="segmented" aria-label="Theme">
+          <button id="themeLightBtn" type="button" data-theme="light" data-i18n="themeDay">白天</button>
+          <button id="themeDarkBtn" type="button" data-theme="dark" data-i18n="themeNight">夜间</button>
+        </div>
+        <a class="nav-link" href="https://nextproto.top/materials?product=N0001" data-i18n="apiMaterialsLink">API协议资料获取</a>
+        <a class="nav-link" href="https://nextproto.top/products/ai-record-card" data-i18n="manualLink">参数说明</a>
+        <a class="nav-link" href="https://nextproto.top/qs668/">Original QS668 Page</a>
+        <span id="secureState" class="pill" data-i18n="secureChecking">检测环境</span>
+        <span id="bleState" class="pill" data-i18n="bleDisconnected">未连接</span>
+        <button id="connectBtn" class="primary" data-i18n="connect">连接设备</button>
+        <button id="compatConnectBtn" data-i18n="compatScan">兼容扫描</button>
+        <button id="disconnectBtn" disabled data-i18n="disconnect">断开</button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section class="panel support-section">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="supportTitle">购买与技术支持</h2>
+            <p data-i18n="supportDesc">扫码购买团购产品，或添加微信技术支持咨询联调、转写和资料问题。</p>
+          </div>
+        </div>
+        <div class="support-qr-grid">
+          <aside class="support-qr-card buy-qr-card">
+            <img src="./purchase-qr-1785035469305.jpg" alt="微信扫码购买团购二维码" />
+            <div>
+              <strong data-i18n="purchaseQrTitle">微信扫码购买</strong>
+              <span data-i18n="purchaseQrDesc">团购二维码</span>
+            </div>
+          </aside>
+          <aside class="support-qr-card tech-qr-card">
+            <img src="./support-tech-1786236404240.png" alt="微信技术支持二维码" />
+            <div>
+              <strong data-i18n="techQrTitle">微信技术支持</strong>
+              <span data-i18n="techQrDesc">扫码咨询资料</span>
+              <small>电话：17512020988</small>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="panel status-panel">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="deviceStatus">设备状态</h2>
+            <p data-i18n="deviceStatusDesc">AE20 服务，AE21 写入，AE22/AE23 通知。</p>
+          </div>
+          <button id="safeSmokeBtn" disabled data-i18n="safeSmoke">读取项巡检</button>
+        </div>
+        <div class="metrics">
+          <div><span data-i18n="battery">电量</span><strong id="batteryText">--</strong></div>
+          <div><span data-i18n="capacity">容量</span><strong id="capacityText">--</strong></div>
+          <div><span data-i18n="firmware">固件</span><strong id="firmwareText">--</strong></div>
+          <div><span data-i18n="recordState">录音状态</span><strong id="recordStateText">--</strong></div>
+          <div><span data-i18n="recordDuration">录音时长</span><strong id="recordTimeText">--</strong></div>
+          <div><span data-i18n="gain">增益</span><strong id="gainText">--</strong></div>
+        </div>
+        <div class="toolbar">
+          <button data-cmd="syncTime" disabled data-i18n="syncTime">同步时间</button>
+          <button data-cmd="capacity" disabled data-i18n="getCapacity">获取容量</button>
+          <button data-cmd="battery" disabled data-i18n="getBattery">获取电量</button>
+          <button data-cmd="firmware" disabled data-i18n="firmwareVersion">固件版本</button>
+          <button data-cmd="auth" disabled data-i18n="authCode">授权码</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="filesTitle">文件列表与导入</h2>
+            <p data-i18n="filesDesc">文件列表整数按 BE 解析；下载请求 2-2 始终整帧单写。</p>
+          </div>
+          <div class="toolbar tight">
+            <button data-cmd="list" disabled data-i18n="readList">读取列表</button>
+            <button id="abortImportBtn" disabled data-i18n="abortImport">终止导入</button>
+          </div>
+        </div>
+        <div class="download-line">
+          <label>
+            <span data-i18n="fileName">文件名</span>
+            <input id="downloadName" placeholder="note20260710-162938.wav" />
+          </label>
+          <label>
+            Offset
+            <input id="downloadOffset" type="number" min="0" value="0" />
+          </label>
+          <button id="downloadBtn" disabled data-i18n="importFile">导入文件</button>
+          <button id="segDownloadBtn" disabled data-i18n="segmentImport">分段导入</button>
+        </div>
+        <div class="download-line">
+          <label>
+            Start
+            <input id="segStart" type="number" min="0" value="0" />
+          </label>
+          <label>
+            End
+            <input id="segEnd" type="number" min="0" value="0" />
+          </label>
+          <span id="downloadStatus" class="muted" data-i18n="notStarted">未开始</span>
+        </div>
+        <div class="file-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th data-i18n="fileName">文件名</th>
+                <th data-i18n="durationTime">时长/时间</th>
+                <th data-i18n="size">大小</th>
+                <th data-i18n="actions">操作</th>
+              </tr>
+            </thead>
+            <tbody id="fileRows">
+              <tr><td colspan="5" class="empty" data-i18n="readFilesAfterConnect">连接后读取文件列表</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="danger-zone">
+          <button id="deleteAllBtn" disabled data-i18n="deleteAll">删除全部文件</button>
+          <label class="confirm">
+            <input id="allowDelete" type="checkbox" />
+            <span data-i18n="allowDelete">允许发送删除命令</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="grid-two">
+        <div class="panel">
+          <div class="section-head">
+            <div>
+              <h2 data-i18n="realtimeTitle">实时音频 / 转写</h2>
+              <p data-i18n="realtimeDesc">直接接收设备推送的 OPUS 系码流，可分段提交后端 ASR 转成文字。</p>
+            </div>
+          </div>
+          <div class="toolbar">
+            <button data-cmd="rtStart" disabled data-i18n="rtStart">开始实时</button>
+            <button data-cmd="rtPause" disabled data-i18n="pause">暂停</button>
+            <button data-cmd="rtResume" disabled data-i18n="resume">继续</button>
+            <button data-cmd="rtStop" disabled data-i18n="rtStop">结束实时</button>
+          </div>
+          <div class="metrics compact">
+            <div><span data-i18n="rtFile">实时文件</span><strong id="rtName">--</strong></div>
+            <div><span data-i18n="receivedBytes">接收字节</span><strong id="rtBytes">0 B</strong></div>
+          </div>
+          <div class="transcribe-tools">
+            <label class="confirm">
+              <input id="rtTranscribeToggle" type="checkbox" />
+              <span data-i18n="rtTranscribeToggle">设备 OPUS 转写</span>
+            </label>
+            <label>
+              <span data-i18n="asrLanguage">识别语言</span>
+              <select id="rtAsrLang">
+                <option value="zh-CN" selected>中文普通话</option>
+                <option value="en-US">English</option>
+                <option value="ja-JP">日本語</option>
+                <option value="ko-KR">한국어</option>
+                <option value="ru-RU">Русский</option>
+              </select>
+            </label>
+          </div>
+          <div class="transcribe-status">
+            <span data-i18n="transcribeStatus">转写状态</span>
+            <strong id="rtTranscribeStatus" data-i18n="asrIdle">待机</strong>
+          </div>
+          <textarea id="rtTranscript" class="transcript-box" rows="7" data-i18n-placeholder="transcriptPlaceholder" placeholder="实时转写文字会显示在这里"></textarea>
+          <div class="toolbar">
+            <button id="saveRealtimeBtn" disabled data-i18n="saveRealtime">保存实时音频原始数据</button>
+            <button id="clearTranscriptBtn" type="button" data-i18n="clearTranscript">清空转写</button>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="grid-two">
+        <div class="panel">
+          <div class="section-head">
+            <div>
+              <h2 data-i18n="rawTitle">原始命令</h2>
+              <p data-i18n="rawDesc">用于补充验证厂商新增命令或抓包复现。</p>
+            </div>
+          </div>
+          <div class="raw-grid">
+            <label>TYPE <input id="rawType" type="number" min="0" max="255" value="0" /></label>
+            <label>CMD <input id="rawCmd" type="number" min="0" max="255" value="3" /></label>
+            <label class="wide">PARAMS HEX <input id="rawParams" placeholder="01 02 03" /></label>
+          </div>
+          <button id="sendRawCmdBtn" disabled data-i18n="sendProtocolFrame">按协议封包发送</button>
+          <label class="raw-frame">
+            <span data-i18n="fullFrameHex">完整帧 HEX</span>
+            <textarea id="rawFrame" rows="3" placeholder="5a 00 ..."></textarea>
+          </label>
+          <button id="sendRawFrameBtn" disabled data-i18n="sendRawFrame">直接发送完整帧</button>
+        </div>
+
+        <div class="panel">
+          <div class="section-head">
+            <div>
+              <h2 data-i18n="selfTestTitle">协议自检</h2>
+              <p data-i18n="selfTestDesc">本地校验 CRC、示例帧和解析器，不需要连接设备。</p>
+            </div>
+          </div>
+          <button id="selfTestBtn" data-i18n="runSelfTest">运行自检</button>
+          <pre id="selfTestOutput" class="test-output" data-i18n="waiting">等待运行</pre>
+        </div>
+      </section>
+
+      <section class="panel log-panel">
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="logTitle">通信日志</h2>
+            <p data-i18n="logDesc">TX/RX 原始帧、解析结果、CRC 错误和超时。</p>
+          </div>
+          <div class="toolbar tight">
+            <button id="clearLogBtn" data-i18n="clear">清空</button>
+            <button id="exportLogBtn" data-i18n="exportLog">导出日志</button>
+          </div>
+        </div>
+        <pre id="log"></pre>
+      </section>
+    </main>
+
+    <template id="downloadTemplate">
+      <div class="download-result">
+        <a id="downloadLink"></a>
+        <audio id="audioPreview" controls hidden></audio>
+      </div>
+    </template>
+
+    <a class="floating-buy-link floating-buy-qr" href="https://nextproto.top/products/ai-record-card" aria-label="微信扫码购买团购二维码">
+      <img src="./purchase-qr-1785035469305.jpg" alt="微信扫码购买团购二维码" />
+      <span><strong>微信扫码购买</strong><small>团购二维码</small></span>
+    </a>
+
+
+    <footer class="site-footer qs668-centered-footer">
+      <p>深圳秋实物联科技有限公司所有</p>
+      <p>技术支持微信：andycv6&nbsp;&nbsp;&nbsp;电话：17512020988</p>
+    </footer>
+
+    <script src="./app.js?v=2026090803"></script>
+  </body>
+</html>

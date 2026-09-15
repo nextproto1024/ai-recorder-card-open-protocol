@@ -1,0 +1,23 @@
+{
+  "name": "ai-recorder-card-open-protocol",
+  "version": "0.1.0",
+  "description": "Open BLE protocol and SDK examples for QS668 AI recorder card / AI recording card.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "ai-recorder-card",
+    "ai-recording-card",
+    "recording-card",
+    "voice-recorder-card",
+    "bluetooth-recorder-card",
+    "ble-audio",
+    "web-bluetooth",
+    "qs668",
+    "录音卡",
+    "AI录音卡"
+  ],
+  "license": "MIT"
+}
+

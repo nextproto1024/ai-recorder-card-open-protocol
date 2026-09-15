@@ -1,0 +1,11 @@
+name: Documentation request
+description: Request clearer Chinese or English documentation
+title: "[Docs] "
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: request
+    attributes:
+      label: What should be documented?
+      description: Include the command, frame, SDK, or integration scenario.
+
