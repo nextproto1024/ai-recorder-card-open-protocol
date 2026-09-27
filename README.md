@@ -6,6 +6,8 @@
 
 项目主页和在线测试平台：<https://nextproto.top/qs668/>
 
+海外客户购买链接：[Open Protocol AI Smart Recorder Card on Tindie](https://www.tindie.com/products/adz1122/open-protocol-ai-smart-recorder-card/)
+
 ## 项目定位
 
 这个项目主打 **开放底层蓝牙协议**，不只是开放 SDK。
@@ -26,6 +28,7 @@
 - 想研究 BLE 录音硬件协议的人
 - 需要实时音频、文件导入、语音转写、录音控制的行业项目
 - 搜索 “录音卡”、“AI录音卡”、“AI recording card”、“AI recorder card”、“recording card SDK” 的开发者
+- 需要购买开放协议 AI录音卡样机进行海外开发测试的客户
 
 ## 已开放内容
 
@@ -108,4 +111,3 @@ CRC 使用 CRC-16/XMODEM，计算范围是 `LEN_LO LEN_HI TYPE CMD PARAMS...`。
 ## 授权
 
 MIT License，见 [LICENSE](./LICENSE)。
-

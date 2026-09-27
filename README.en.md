@@ -8,6 +8,8 @@ This repository is for developers building products around an AI recorder card, 
 
 Product and online tester: <https://nextproto.top/qs668/>
 
+International purchase link: [Open Protocol AI Smart Recorder Card on Tindie](https://www.tindie.com/products/adz1122/open-protocol-ai-smart-recorder-card/)
+
 ## Why This Project
 
 - Open protocol first: the BLE service, characteristics, frame format, command types, and CRC are documented.
@@ -15,12 +17,14 @@ Product and online tester: <https://nextproto.top/qs668/>
 - Web Bluetooth ready: the `website/` directory contains the open-source code of the QS668 online protocol tester.
 - Bilingual docs: Chinese and English keywords are included so developers can find this project by searching "录音卡", "AI录音卡", "AI recording card", "AI recorder card", "recording card", or "Bluetooth recorder card".
 - Hardware integration friendly: supports device status, battery, capacity, recording control, realtime OPUS stream, file list, file import, delete, and raw protocol frame testing.
+- Tindie-ready for overseas customers who want to buy sample hardware for development and protocol testing.
 
 ## Repository Layout
 
 ```text
 .
 ├── README.md
+├── README.en.md
 ├── README.zh-CN.md
 ├── docs/
 │   ├── protocol.md
