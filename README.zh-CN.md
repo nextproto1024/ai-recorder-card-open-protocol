@@ -8,6 +8,12 @@
 
 海外客户购买链接：[Open Protocol AI Smart Recorder Card on Tindie](https://www.tindie.com/products/adz1122/open-protocol-ai-smart-recorder-card/)
 
+## 团购二维码
+
+扫码购买 AI录音卡开发样机：
+
+![AI录音卡团购二维码](./website/purchase-qr-1785035469305.jpg)
+
 ## 项目定位
 
 这个项目主打 **开放底层蓝牙协议**，不只是开放 SDK。

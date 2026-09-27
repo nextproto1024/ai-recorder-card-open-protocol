@@ -10,6 +10,12 @@ Product and online tester: <https://nextproto.top/qs668/>
 
 International purchase link: [Open Protocol AI Smart Recorder Card on Tindie](https://www.tindie.com/products/adz1122/open-protocol-ai-smart-recorder-card/)
 
+## Group-Buy QR Code
+
+Scan to purchase an AI recorder card development sample:
+
+![AI recorder card group-buy QR code](./website/purchase-qr-1785035469305.jpg)
+
 ## Why This Project
 
 - Open protocol first: the BLE service, characteristics, frame format, command types, and CRC are documented.
