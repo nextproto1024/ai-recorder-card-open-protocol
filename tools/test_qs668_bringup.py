@@ -28,6 +28,10 @@ class BringupHelperTests(unittest.TestCase):
             ["a.wav", "b.wav", "c.wav"],
         )
 
+    def test_stem_from_name_discards_path_components(self):
+        self.assertEqual(MOD.stem_from_name("../../note.wav"), "note")
+        self.assertEqual(MOD.stem_from_name(r"C:\\temp\\note.opus"), "note")
+
     def test_resolve_import_targets(self):
         files = [entry("note1.wav"), entry("note2.")]
         all_args = argparse.Namespace(import_all=True, import_first=False, filename=None)
