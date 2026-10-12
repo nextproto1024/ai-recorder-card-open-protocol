@@ -32,18 +32,43 @@ Scan to purchase an AI recorder card development sample:
 ├── README.md
 ├── README.en.md
 ├── README.zh-CN.md
+├── .agents/skills/qs668-bringup/
+├── archive/
+│   ├── audio/
+│   └── corpus/
 ├── docs/
 │   ├── protocol.md
-│   └── protocol.zh-CN.md
+│   ├── protocol.zh-CN.md
+│   ├── skill.md
+│   ├── skill.zh-CN.md
+│   ├── data-relationship.md
+│   ├── data-relationship.zh-CN.md
+│   ├── roadmap.md
+│   └── roadmap.zh-CN.md
 ├── examples/
 │   └── web-bluetooth/
 ├── sdk/
 │   └── javascript/
+├── tools/
+│   ├── qs668-bringup.py
+│   └── qs668-raw-opus-to-ogg.py
 └── website/
     ├── index.html
     ├── styles.css
     └── app.js
 ```
+
+## Codex / Cursor Bring-up
+
+Use the CLI from chat to import recordings into `archive/audio/`. See the [bring-up skill](./docs/skill.md) and `.agents/skills/qs668-bringup/SKILL.md`.
+
+```bash
+python -m pip install -r tools/requirements.txt
+python tools/qs668-bringup.py --scan
+python tools/qs668-bringup.py --import-first --out archive/audio
+```
+
+Where the PC, phone, and recorder card each keep data is in [Data relationship](./docs/data-relationship.md). Near-term priorities are in the [Roadmap](./docs/roadmap.md).
 
 ## Quick Start
 
@@ -89,6 +114,9 @@ Read more:
 
 - [Protocol documentation](./docs/protocol.md)
 - [中文协议文档](./docs/protocol.zh-CN.md)
+- [Bring-up skill](./docs/skill.md)
+- [Data relationship](./docs/data-relationship.md)
+- [Roadmap](./docs/roadmap.md)
 - [JavaScript SDK](./sdk/javascript/)
 - [Web Bluetooth example](./examples/web-bluetooth/)
 

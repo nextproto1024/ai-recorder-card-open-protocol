@@ -3,4 +3,14 @@ node_modules/
 dist/
 coverage/
 *.log
+.env
+.qs668-device
+tools/__pycache__/
+*.pyc
+
+# Local PC archive. Keep the empty directory placeholders.
+archive/audio/*
+!archive/audio/.gitkeep
+archive/corpus/*
+!archive/corpus/.gitkeep
 

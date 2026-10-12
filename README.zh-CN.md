@@ -47,18 +47,43 @@
 ├── README.md
 ├── README.en.md
 ├── README.zh-CN.md
+├── .agents/skills/qs668-bringup/
+├── archive/
+│   ├── audio/
+│   └── corpus/
 ├── docs/
 │   ├── protocol.md
-│   └── protocol.zh-CN.md
+│   ├── protocol.zh-CN.md
+│   ├── skill.md
+│   ├── skill.zh-CN.md
+│   ├── data-relationship.md
+│   ├── data-relationship.zh-CN.md
+│   ├── roadmap.md
+│   └── roadmap.zh-CN.md
 ├── examples/
 │   └── web-bluetooth/
 ├── sdk/
 │   └── javascript/
+├── tools/
+│   ├── qs668-bringup.py
+│   └── qs668-raw-opus-to-ogg.py
 └── website/
     ├── index.html
     ├── styles.css
     └── app.js
 ```
+
+## Codex / Cursor 快速接入
+
+对话里用 CLI 把录音导入 `archive/audio/`。说明见 [接入技能](./docs/skill.zh-CN.md)，步骤见 `.agents/skills/qs668-bringup/SKILL.md`。
+
+```bash
+python -m pip install -r tools/requirements.txt
+python tools/qs668-bringup.py --scan
+python tools/qs668-bringup.py --import-first --out archive/audio
+```
+
+电脑、手机和录音卡的数据关系见 [数据关系](./docs/data-relationship.zh-CN.md)。后续优先事项见 [路线图](./docs/roadmap.zh-CN.md)。
 
 ## 本地运行网页测试平台
 
@@ -104,6 +129,9 @@ CRC 使用 CRC-16/XMODEM，计算范围是 `LEN_LO LEN_HI TYPE CMD PARAMS...`。
 
 - [中文协议文档](./docs/protocol.zh-CN.md)
 - [Protocol documentation](./docs/protocol.md)
+- [接入技能](./docs/skill.zh-CN.md)
+- [数据关系](./docs/data-relationship.zh-CN.md)
+- [路线图](./docs/roadmap.zh-CN.md)
 - [JavaScript SDK](./sdk/javascript/)
 - [Web Bluetooth 示例](./examples/web-bluetooth/)
 
