@@ -25,6 +25,7 @@ import sys
 import tempfile
 import time
 import uuid
+import wave
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -193,10 +194,20 @@ def resolve_config(args: argparse.Namespace) -> dict:
 
 def require_ffmpeg() -> None:
     if shutil.which("ffmpeg") is None or shutil.which("ffprobe") is None:
-        raise SystemExit("ffmpeg and ffprobe are required for long-audio splitting.")
+        raise SystemExit(
+            "ffmpeg and ffprobe are required for non-WAV audio or long-audio splitting."
+        )
 
 
 def probe_duration_seconds(audio_path: Path) -> float:
+    if audio_path.suffix.lower() == ".wav":
+        try:
+            with wave.open(str(audio_path), "rb") as handle:
+                frame_rate = handle.getframerate()
+                if frame_rate > 0:
+                    return handle.getnframes() / frame_rate
+        except (EOFError, wave.Error):
+            pass
     require_ffmpeg()
     result = subprocess.run(
         [
@@ -786,7 +797,6 @@ def newest_audio(audio_dir: Path) -> Path:
 
 def main() -> int:
     args = build_parser().parse_args()
-    config = resolve_config(args)
     audio_path = Path(args.audio) if args.audio else newest_audio(DEFAULT_AUDIO_DIR)
     if not audio_path.is_file():
         raise SystemExit(f"Audio not found: {audio_path}")
@@ -800,6 +810,7 @@ def main() -> int:
         print(f"DONE {existing} skipped=1")
         return 0
 
+    config = resolve_config(args)
     print(
         f"ASR {audio_path} provider={config['provider']} "
         f"language={config['language'] or 'auto'}"
