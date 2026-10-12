@@ -29,6 +29,19 @@ class TranscribeHelperTests(unittest.TestCase):
         self.assertEqual(len(plans), 3)
         self.assertEqual(plans[-1].end_s, 1200)
 
+    def test_wav_duration_does_not_require_ffmpeg(self):
+        import tempfile
+        import wave
+
+        with tempfile.TemporaryDirectory() as tmp:
+            audio = Path(tmp) / "short.wav"
+            with wave.open(str(audio), "wb") as handle:
+                handle.setnchannels(1)
+                handle.setsampwidth(2)
+                handle.setframerate(16000)
+                handle.writeframes(b"\0\0" * 16000)
+            self.assertAlmostEqual(MOD.probe_duration_seconds(audio), 1.0)
+
     def test_utterances_and_merge(self):
         lines = MOD.utterances_to_lines(
             [{"text": "你好", "start_time": 0, "end_time": 1200, "additions": {"speaker": "2"}}],
