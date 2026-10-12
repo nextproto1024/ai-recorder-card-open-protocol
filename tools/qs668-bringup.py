@@ -223,12 +223,13 @@ async def list_files(session: Session):
 
 
 def stem_from_name(name: str) -> str:
-    path = Path(name)
+    safe_name = Path(name.replace("\\", "/")).name
+    path = Path(safe_name)
     if path.suffix.lower() in {".wav", ".opus", ".raw", ".ogg"}:
         return path.stem
-    if name.endswith("."):
-        return name[:-1]
-    return name
+    if safe_name.endswith("."):
+        return safe_name[:-1]
+    return safe_name or "qs668-import"
 
 
 def normalize_filename_args(values: list[str] | None) -> list[str]:
