@@ -8,6 +8,10 @@
 
 海外客户购买链接：[Open Protocol AI Smart Recorder Card on Tindie](https://www.tindie.com/products/adz1122/open-protocol-ai-smart-recorder-card/)
 
+## 联系方式与技术支持
+
+商务合作、样机购买、协议接入和技术支持：<mailto:sales@icbbuy.com>
+
 ## 团购二维码
 
 扫码购买 AI录音卡开发样机：

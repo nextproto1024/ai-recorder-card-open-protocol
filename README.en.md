@@ -10,6 +10,10 @@ Product and online tester: <https://nextproto.top/qs668/>
 
 International purchase link: [Open Protocol AI Smart Recorder Card on Tindie](https://www.tindie.com/products/adz1122/open-protocol-ai-smart-recorder-card/)
 
+## Contact and Technical Support
+
+For business cooperation, development samples, protocol integration, and technical support: <mailto:sales@icbbuy.com>
+
 ## Group-Buy QR Code
 
 Scan to purchase an AI recorder card development sample:
